@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Employee_Department.Models.View_Model.EmployeeDepartmentSummaryView>
+
+@{
+    ViewData["Title"] = "Employee Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="col-12">
+                <h1 class="text-info text-black center p-1 boarder boarder-dark">Employee Detail's</h1>
+                <div class="col-6 float-end">
+                    <button style="cursor:pointer" class="btn btn-sm btn-outline-danger m-1 p-1 float-end" id="btnDelete">Delete Selected Records</button>
+                </div>
+                <div class="col-6">
+                    <input type="text" placeholder="Search here..." id="txtSearch" class="form-control m-1 float-end" style="width:50%;" />
+                </div>
+                <div class=" float-left">
+                    <a class="btn btn-sm btn-warning m-2 p-1" asp-action="AddEmployee" asp-controller="Employee">
+                        AddEmployees
+                    </a>
+                </div>
+
+            </div>
+            <table class="table table-bordered text-center">
+                <thead class="bg-dark text-light">
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="form-check-input" id="Select_All">    Select All</input>
+                        </th>
+                        <th>EmployeeID</th>
+                        <th>FirstName</th>
+                        <th>LastName</th>
+                        <th>Gender</th>
+                        <th>Department Name</th>
+                        <th>Department Code</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var d in Model)
+                    {
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="form-check-input" id="Select_One" value="@d.EmployeeId"></input>
+                            </td>
+                    <td>@d.EmployeeId</td>
+                    <td class="editable" data-field="FirstName" data-id="@d.EmployeeId">@d.FirstName</td>
+                    <td class="editable" data-field="LastName" data-id="@d.EmployeeId">@d.LastName</td>
+                    <td class="editable" data-field="Gender" data-id="@d.EmployeeId">@d.Gender</td>
+                    <td class="editable" data-field="DepartmentName" data-id="@d.EmployeeId">@d.DepartmentName</td>
+                    <td class="editable" data-field="Departmentcode" data-id="@d.EmployeeId">@d.Departmentcode</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-6">
+                    <a class="btn-sm btn-warning m-1 p-2" asp-action="Index" asp-controller="Home">Back to Dashboard</a>
+                </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/site.js"></script>
+
+}

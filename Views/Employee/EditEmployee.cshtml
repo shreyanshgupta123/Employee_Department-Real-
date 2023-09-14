@@ -1,0 +1,81 @@
+﻿@model Employee_Department.Models.View_Model.EmployeeDepartmentSummaryView
+@{
+    ViewData["Title"] = "EditEmployee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center text-info">Update Employee</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="EditEmployee" asp-controller="Employee">
+                        @Html.AntiForgeryToken() <!-- Added for security -->
+                        <div class="text-danger text-center" asp-validation-summary="ModelOnly"></div>
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="FirstName"></label>
+                            <input type="text" class="form-control" asp-for="FirstName" placeholder="Enter First name" autocomplete="off" />
+                            <input type="hidden" asp-for="EmployeeId" />
+                            <span class="text-danger" asp-validation-for="FirstName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="LastName"></label>
+                            <input type="text" class="form-control" asp-for="LastName" placeholder="Enter Last Name" autocomplete="off">
+                            <span class="text-danger" asp-validation-for="LastName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Gender" class="mb-1"></label><br>
+                            <label>
+                                <input type="radio" asp-for="Gender" class="form-check-input" value="Male">Male
+                            </label>
+                            <label>
+                                <input type="radio" asp-for="Gender" class="form-check-input" value="Female">Female
+                            </label>
+                            <label>
+                                <input type="radio" asp-for="Gender" class="form-check-input" value="Other">Other
+                            </label>
+                            <span class="text-danger" asp-validation-for="Gender"></span>
+                        </div>
+                        @* <div class="form-group col-lg-4 mt-2">
+                        <label asp-for="DepartmentName"></label>
+                        <select asp-for="DepartmentId" class="form-control">
+                        <option>--Select Department--</option>
+                        @foreach (var dep in ViewBag.department)
+                        {
+                        <option value="@dep.department">@dep.DepartmentName</option>
+                        }
+                        </select>
+                        </div>*@
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="DepartmentId"></label>
+                            <input type="text" class="form-control" asp-for="DepartmentId" placeholder="Enter DepartmentId" autocomplete="off">
+                            <span class="text-danger" asp-validation-for="DepartmentId"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="DepartmentName"></label>
+                            <input type="text" class="form-control" asp-for="DepartmentName" placeholder="Enter DepartmentId" autocomplete="off">
+                            <span class="text-danger" asp-validation-for="DepartmentName"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="mb-1" asp-for="Departmentcode"></label>
+                            <input type="text" class="form-control" asp-for="Departmentcode" placeholder="Enter DepartmentId" autocomplete="off">
+                            <span class="text-danger" asp-validation-for="Departmentcode"></span>
+                        </div>
+
+                        <div class="float-end">
+                            <input type="submit" class="btn btn-sm btn-warning p-2 mt-4" value="Update">
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer mt-4">
+                    <div class="d-grid gap-2">
+                        <a class="btn-sm btn-warning p-2 m-2" asp-action="Index" asp-controller="Employee">Back to list</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
